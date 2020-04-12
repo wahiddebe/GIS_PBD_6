@@ -30,7 +30,7 @@ class Home extends CI_Controller {
 
     public function input()
     {
-             
+            $this->admin_login->cek_login();
         $this->form_validation->set_rules('nama_gunung', 'Nama Gunung', 'required');
         
 
@@ -98,7 +98,7 @@ class Home extends CI_Controller {
     public function edit($id)
     {
 
-            
+        $this->admin_login->cek_login();
         $this->form_validation->set_rules('nama_gunung', 'Nama Gunung', 'required');
         
 
@@ -156,8 +156,8 @@ class Home extends CI_Controller {
     }
 
     public function delete($id)
-    {
-
+    {   
+        $this->admin_login->cek_login();
         $this->m_home->delete($id);
             
         $this->session->set_flashdata('pesan', 'Data Berhasil Dihapus :(');

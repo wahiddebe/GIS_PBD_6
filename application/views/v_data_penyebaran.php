@@ -23,7 +23,9 @@
                                             <th>Status</th>
                                             <th>Latitude</th>
                                             <th>Longitude</th>
+                                            <?php if ($this->session->userdata('username')<>"") { ?> 
                                             <th>Action</th>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,10 +39,12 @@
                                             <td><?= $value->status ?></td>
                                             <td><?= $value->latitude ?></td>
                                             <td><?= $value->longitude ?></td>
+                                            <?php if ($this->session->userdata('username')<>"") { ?> 
                                             <td>
                                                 <a href="<?= base_url('home/edit/'.$value->id) ?>" class="btn btn-xs btn-success">Edit</a>
                                                 <a href="<?= base_url('home/delete/'.$value->id) ?>" class="btn btn-xs btn-danger">Delete</a>
                                             </td>
+                                            <?php } ?>
                                         </tr>
                                         <?php } ?>
                                     </tbody>

@@ -12,12 +12,15 @@
                       <li>
                         <a  href="<?= base_url() ?>home/tampil"><i class="fa fa-table"></i>Data Gunung </a>
                     </li>
+                    <?php if ($this->session->userdata('username')<>"") { ?> 
+                    
                     <li>
                         <a  href="<?= base_url() ?>home/input"><i class="fa fa-plus"></i>Input Data</a>
                     </li>
-						   <li  >
+                    <?php } ?>
+					<!-- <li>
                         <a  href="chart.html"><i class="fa fa-user"></i>User</a>
-                    </li>		
+                    </li>		 -->
                 </ul>
                
             </div>
