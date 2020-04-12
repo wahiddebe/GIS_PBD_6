@@ -11,7 +11,7 @@ class M_auth extends CI_Model {
         $this->db->from('user');
         $this->db->where( array(
             'username' => $username,
-            'password' => $password
+            'password' => md5($password)
 
         ) );
 
