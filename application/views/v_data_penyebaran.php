@@ -9,7 +9,9 @@
         }
 ?>
 <div class="row">
+
                 <div class="col-md-12">
+                <a href="<?= base_url('export/export/') ?>" class="btn btn-xs btn-success">Download Laporan (.xlsx)</a>
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-body">
