@@ -31,8 +31,11 @@
 
 
 <script src="<?= base_url() ?>template/assets/js/custom.js"></script>
+
     
 
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="<?= base_url() ?>template/assets/js/leaflet.ajax.js"></script>
+<script src="<?= base_url() ?>template/assets/js/leaflet.ajax.min.js"></script>
 
 </head>

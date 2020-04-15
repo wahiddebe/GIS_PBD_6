@@ -19,7 +19,7 @@ class Home extends CI_Controller {
     public function index()
     {
         $data = array(
-            'title' => 'Pemetaan Gunung Aktif di Pulau Jawa ',
+            'title' => 'Pemetaan Gunung Aktif di Jawa Tengah ',
             'pemetaan' => $this->m_home->tampil(),
             'isi' => 'v_home'
         );
