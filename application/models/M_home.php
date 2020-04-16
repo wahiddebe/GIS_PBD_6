@@ -20,6 +20,15 @@ class M_home extends CI_Model {
         return $this->db->get()->result();
     }
 
+
+    public function tampilgeo()
+    {
+        $this->db->select('*');
+        $this->db->from('geojson');
+        $this->db->order_by('id', 'desc');
+        return $this->db->get()->result();
+    }
+
     public function detail($id)
     {
         $this->db->select('*');

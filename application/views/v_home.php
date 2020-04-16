@@ -82,9 +82,15 @@ var blueIcon = new L.Icon({
         <?php } ?>
 <?php } ?>
 
-var jsonTest = new L.GeoJSON.AJAX(["<?= base_url() ?>template/assets/geojson/jateng.geojson"],{
+<?php foreach ($geo as $key => $value) { ?>
+        var jsonTest = new L.GeoJSON.AJAX(["<?= base_url() ?>template/assets/geojson/<?= $value->geojson ?>"],{
         color: 'red',opacity:0.5,weight: 0.5,fillColor : 'red',fillopacity:0.03
 }).addTo(map);
+<?php }?>
+
+
+
+
 
 
 
@@ -107,7 +113,7 @@ if ( $this->session->flashdata('pesan'))
 }
 
 
-echo form_open_multipart('home/action'); 
+echo form_open_multipart('upload/do_upload'); 
 
 
 ?>
@@ -117,7 +123,6 @@ echo form_open_multipart('home/action');
 </div>
 <div  class="form-grup" >
     <button type="submit" class="btn btn-primary" >Save</button>
-    <button type="reset" class="btn btn-success" >Reset</button>
 </div>
 <?php echo form_close() ?>
 
