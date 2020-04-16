@@ -63,7 +63,7 @@ var blueIcon = new L.Icon({
         <?php 
         if ($value->warna=='yellow') { ?>
                 L.marker([<?= $value->latitude ?>,<?= $value->longitude ?>], {
-        icon: yellowIcon
+        icon: goldIcon
         }).bindPopup("<b><?= $value->nama_gunung ?></b><br>Status : <?= $value->status ?><br>Keterangan :  <?= $value->keterangan ?><br>Radius Bahaya : 10 Km").addTo(map);
         <?php } ?>
 

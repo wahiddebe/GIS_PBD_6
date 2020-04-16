@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2020 at 08:55 AM
+-- Generation Time: Apr 16, 2020 at 06:37 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -21,6 +21,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_gunung`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `geojson`
+--
+
+CREATE TABLE `geojson` (
+  `id` int(11) NOT NULL,
+  `geojson` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `geojson`
+--
+
+INSERT INTO `geojson` (`id`, `geojson`) VALUES
+(16, 'jateng.geojson'),
+(17, 'jateng.geojson');
 
 -- --------------------------------------------------------
 
@@ -44,13 +63,10 @@ CREATE TABLE `tbl_penyebaran` (
 --
 
 INSERT INTO `tbl_penyebaran` (`id`, `nama_gunung`, `keterangan`, `radius`, `latitude`, `longitude`, `warna`, `status`) VALUES
-(16, 'Gunung Merapi', '', '3000', '-7.54067840', '110.4465878', 'green', 'Waspada'),
-(17, 'Gunung Slamet', '', '3000', '-7.24174605', '109.2192033', 'green', 'Waspada'),
-(18, 'Gunung Sumbing', '', '300', '-7.38255544', '110.0764872', 'blue', 'Normal Aktif'),
-(19, 'Gunung Sindoro', '', '300', '-7.30074837', '109.9974353', 'blue', 'Normal Aktif'),
-(20, 'Gunung Semeru', '', '3000', '-8.10800692', '112.9223734', 'green', 'Waspada'),
-(21, 'Gunung Arjuno Welirang', '', '300', '-7.72460016', '112.5810239', 'blue', 'Normal Aktif'),
-(22, 'Gunung Kelud', '', '300', '-7.94023602', '112.3041917', 'blue', 'Normal Aktif');
+(16, 'Gunung Merapi', '', '20000', '-7.54067840', '110.4465878', 'red', 'Awas'),
+(17, 'Gunung Slamet', '', '10000', '-7.24174605', '109.2192033', 'yellow', 'Siaga'),
+(18, 'Gunung Sumbing', '', '3000', '-7.38255544', '110.0764872', 'green', 'Waspada'),
+(19, 'Gunung Sindoro', '', '300', '-7.30074837', '109.9974353', 'blue', 'Normal Aktif');
 
 -- --------------------------------------------------------
 
@@ -77,6 +93,12 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama_user`) VALUES
 --
 
 --
+-- Indexes for table `geojson`
+--
+ALTER TABLE `geojson`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_penyebaran`
 --
 ALTER TABLE `tbl_penyebaran`
@@ -91,6 +113,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `geojson`
+--
+ALTER TABLE `geojson`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_penyebaran`
