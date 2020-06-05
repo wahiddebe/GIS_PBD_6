@@ -1,6 +1,6 @@
 <div class="col-md-5">
     <div id="map" style="height: 500px"></div>
-
+    <button id="convert" class="btn btn-warning">Tambahkan Koordinat</button>
 </div>
 
 
@@ -15,7 +15,7 @@
     }
 
 
-    echo form_open('home/input');
+    echo form_open('home/input_poly');
 
 
     ?>
@@ -27,17 +27,9 @@
         <label>Keterangan</label>
         <textarea name="keterangan" placeholder="Masukan Keterangan" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>Latitude</label>
-            <input name="latitude" id="Latitude" placeholder="Masukan Latitude" class="form-control" required readonly>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>Longitude</label>
-            <input name="longitude" id="Longitude" placeholder="Masukan Longitude" class="form-control" required readonly>
-        </div>
+    <div class="form-group">
+        <label>Koordinat</label>
+        <textarea name="koordinat" placeholder="" id="result" cols="30" rows="10" class="form-control" readonly></textarea>
     </div>
 
     <div class="form-group">
@@ -76,40 +68,30 @@
 
 
     <script>
-        var curLocation = [0, 0];
-        if (curLocation[0] == 0 && curLocation[1] == 0) {
-            curLocation = [-7.2780317, 109.9775643];
-        }
-        var map = L.map('map').setView([-7.2780317, 109.9775643], 6);
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-
-            maxZoom: 18,
-            id: 'mapbox/streets-v11'
+        var map = L.map('map').setView([-7.2780317, 109.9775643], 7);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+        // FeatureGroup is to store editable layers
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
 
-        map.attributionControl.setPrefix(false);
-
-        var marker = new L.marker(curLocation, {
-            draggable: 'true'
+        map.on('draw:created', function(event) {
+            var layer = event.layer,
+                feature = layer.feature = layer.feature || {};
+            feature.type = feature.type || "Feature";
+            var props = feature.properties = feature.properties || {};
+            drawnItems.addLayer(layer);
         });
 
-        marker.on('dragend', function(event) {
-            var position = marker.getLatLng();
-            marker.setLatLng(position, {
-                draggable: 'true'
-            }).bindPopup(position).update();
-            $("#Latitude").val(position.lat);
-            $("#Longitude").val(position.lng).keyup();
+        document.getElementById("convert").addEventListener("click", function() {
+            var hasil = $('#result').html(JSON.stringify(drawnItems.toGeoJSON()));
         });
-
-        $("#Latitude, #Longitude").change(function() {
-            var position = [parseInt($("#Latitude").val()), parseInt($("#Longitude").val())];
-            marker.setLatLng(position, {
-                draggable: 'true'
-            }).bindPopup(position).update();
-            map.panTo(position);
-        });
-        map.addLayer(marker);
     </script>
 </div>
