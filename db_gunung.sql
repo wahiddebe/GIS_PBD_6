@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 06:37 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.1.33
+-- Waktu pembuatan: 05 Jun 2020 pada 19.03
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `geojson`
+-- Struktur dari tabel `geojson`
 --
 
 CREATE TABLE `geojson` (
@@ -34,17 +33,18 @@ CREATE TABLE `geojson` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `geojson`
+-- Dumping data untuk tabel `geojson`
 --
 
 INSERT INTO `geojson` (`id`, `geojson`) VALUES
 (16, 'jateng.geojson'),
-(17, 'jateng.geojson');
+(17, 'jateng.geojson'),
+(18, 'jateng.geojson');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_penyebaran`
+-- Struktur dari tabel `tbl_penyebaran`
 --
 
 CREATE TABLE `tbl_penyebaran` (
@@ -59,7 +59,7 @@ CREATE TABLE `tbl_penyebaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_penyebaran`
+-- Dumping data untuk tabel `tbl_penyebaran`
 --
 
 INSERT INTO `tbl_penyebaran` (`id`, `nama_gunung`, `keterangan`, `radius`, `latitude`, `longitude`, `warna`, `status`) VALUES
@@ -71,7 +71,29 @@ INSERT INTO `tbl_penyebaran` (`id`, `nama_gunung`, `keterangan`, `radius`, `lati
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `tbl_penyebaran_poly`
+--
+
+CREATE TABLE `tbl_penyebaran_poly` (
+  `id` int(11) NOT NULL,
+  `nama_gunung` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `koordinat` text DEFAULT NULL,
+  `warna` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_penyebaran_poly`
+--
+
+INSERT INTO `tbl_penyebaran_poly` (`id`, `nama_gunung`, `keterangan`, `koordinat`, `warna`, `status`) VALUES
+(24, 'asdasd', 'asdasd', '{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[110.686113,-8.026595],[108.611515,-7.569437],[109.90754,-7.340675],[110.686113,-7.08999],[111.279137,-7.08999],[111.279137,-8.026595],[110.686113,-8.026595]]]}}]}', 'yellow', 'Siaga');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -82,7 +104,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama_user`) VALUES
@@ -93,41 +115,53 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama_user`) VALUES
 --
 
 --
--- Indexes for table `geojson`
+-- Indeks untuk tabel `geojson`
 --
 ALTER TABLE `geojson`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_penyebaran`
+-- Indeks untuk tabel `tbl_penyebaran`
 --
 ALTER TABLE `tbl_penyebaran`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `tbl_penyebaran_poly`
+--
+ALTER TABLE `tbl_penyebaran_poly`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `geojson`
+-- AUTO_INCREMENT untuk tabel `geojson`
 --
 ALTER TABLE `geojson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `tbl_penyebaran`
+-- AUTO_INCREMENT untuk tabel `tbl_penyebaran`
 --
 ALTER TABLE `tbl_penyebaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `tbl_penyebaran_poly`
+--
+ALTER TABLE `tbl_penyebaran_poly`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
